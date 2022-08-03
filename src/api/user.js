@@ -30,3 +30,14 @@ export function login(loginName, password, code, clientToken) {
     },
   });
 }
+/**
+ * 获取用户基本信息
+ * @param {String} id 用户id
+ * @returns
+ */
+export function getUserInfo(id) {
+  return request({
+    url: "/api/user-service/user/" + id,
+    methods: "GET",
+  });
+}

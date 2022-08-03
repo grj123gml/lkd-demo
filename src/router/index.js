@@ -1,10 +1,10 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from "vue";
+import Router from "vue-router";
 
-Vue.use(Router)
+Vue.use(Router);
 
 /* Layout */
-import Layout from '@/layout'
+import Layout from "@/layout";
 
 export const constantRoutes = [
   {
@@ -22,13 +22,13 @@ export const constantRoutes = [
   {
     path: "/",
     component: Layout,
-    redirect: "/dashboard",
+    redirect: "/home",
     children: [
       {
-        path: "dashboard",
-        name: "帝可得",
-        component: () => import("@/views/dashboard/index"),
-        meta: { title: "帝可得", icon: "dashboard" },
+        path: "home",
+        name: "home",
+        component: () => import("@/views/home/index"),
+        meta: { title: "帝可得", icon: "el-icon-s-home" },
       },
     ],
   },
@@ -37,18 +37,18 @@ export const constantRoutes = [
     path: "/example",
     component: Layout,
     redirect: "/example/table",
-    name: "工单管理",
-    meta: { title: "工单管理", icon: "el-icon-s-help" },
+    name: "Example",
+    meta: { title: "工单管理", icon: "el-icon-tickets" },
     children: [
       {
         path: "table",
-        name: "运营工单",
+        name: "Table",
         component: () => import("@/views/table/index"),
         meta: { title: "运营工单", icon: "table" },
       },
       {
         path: "tree",
-        name: "运维工单",
+        name: "Tree",
         component: () => import("@/views/tree/index"),
         meta: { title: "运维工单", icon: "tree" },
       },
@@ -56,152 +56,154 @@ export const constantRoutes = [
   },
 
   {
-    path: "/goods",
+    path: "/node",
     component: Layout,
-    redirect: "/nested/menu1",
-    name: "点位管理",
+    redirect: "/node/region",
+    name: "node",
     meta: {
       title: "点位管理",
       icon: "el-icon-map-location",
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/views/nested/menu1/index"), // Parent router-view
-        name: "区域管理",
+        path: "region",
+        component: () => import("@/views/address/region/index"), // Parent router-view
+        name: "region",
         meta: { title: "区域管理" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "点位管理",
+        path: "node",
+        component: () => import("@/views/address/node/index"),
+        name: "node",
         meta: { title: "点位管理" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "合作商管理",
+        path: "partner",
+        component: () => import("@/views/address/partner/index"),
+        name: "partner",
         meta: { title: "合作商管理" },
       },
     ],
   },
   {
-    path: "/shebei",
+    path: "/vm",
     component: Layout,
-    redirect: "/nested/menu1",
-    name: "设备管理",
+    redirect: "/vm/index",
+    name: "vm",
     meta: {
       title: "设备管理",
-      icon: "nested",
+      icon: "el-icon-lollipop",
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/views/nested/menu1/index"), // Parent router-view
-        name: "设备管理",
+        path: "index",
+        component: () => import("@/views/vm/index/index"), // Parent router-view
+        name: "index",
         meta: { title: "设备管理" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "设备状态",
+        path: "status",
+        component: () => import("@/views/vm/status/index"),
+        name: "status",
         meta: { title: "设备状态" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "设备类型管理",
-        meta: { title: "设备类型管理" },
+        path: "type",
+        component: () => import("@/views/vm/type/index"),
+        name: "type",
+        meta: { title: "设置类型管理" },
       },
     ],
   },
   {
-    path: "/people",
+    path: "/user",
     component: Layout,
-    redirect: "/nested/menu1",
-    name: "人员管理",
+    redirect: "/user/index",
+    name: "user",
     meta: {
       title: "人员管理",
-      icon: "nested",
+      icon: "el-icon-user",
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/views/nested/menu1/index"), // Parent router-view
-        name: "人员列表",
+        path: "index",
+        component: () => import("@/views/user/index/index"), // Parent router-view
+        name: "index",
         meta: { title: "人员列表" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "人效统计",
+        path: "user-task-stats",
+        component: () => import("@/views/user/taskStats/index"),
+        name: "user-task-stats",
         meta: { title: "人效统计" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "工作量列表",
+        path: "user-work",
+        component: () => import("@/views/user/work/index"),
+        name: "user-work",
         meta: { title: "工作量列表" },
       },
     ],
   },
   {
-    path: "/good",
+    path: "/sku",
     component: Layout,
-    redirect: "/nested/menu1",
-    name: "商品管理",
+    redirect: "/sku/sku-class",
+    name: "sku",
     meta: {
       title: "商品管理",
-      icon: "nested",
+      icon: "el-icon-goods",
     },
     children: [
       {
-        path: "menu1",
-        component: () => import("@/views/nested/menu1/index"), // Parent router-view
-        name: "商品类型",
+        path: "sku-class",
+        component: () => import("@/views/sku/class/index"), // Parent router-view
+        name: "sku-class",
         meta: { title: "商品类型" },
       },
       {
-        path: "menu2",
-        component: () => import("@/views/nested/menu2/index"),
-        name: "商品管理",
+        path: "sku",
+        component: () => import("@/views/sku/sku/index"),
+        name: "sku",
         meta: { title: "商品管理" },
       },
     ],
   },
   {
-    path: "/form",
+    path: "/policy",
     component: Layout,
+    redirect: "/policy/index",
     children: [
       {
         path: "index",
-        name: "策略管理",
-        component: () => import("@/views/form/index"),
-        meta: { title: "策略管理", icon: "form" },
+        name: "index",
+        component: () => import("@/views/policy/index"),
+        meta: { title: "策略管理", icon: "el-icon-table-lamp" },
       },
     ],
   },
   {
     path: "/order",
     component: Layout,
+    redirect: "/order/order",
     children: [
       {
-        path: "index",
-        name: "订单管理",
-        component: () => import("@/views/form/index"),
-        meta: { title: "订单管理", icon: "form" },
+        path: "order",
+        name: "order",
+        component: () => import("@/views/order/index"),
+        meta: { title: "订单管理", icon: "el-icon-collection" },
       },
     ],
   },
   {
-    path: "/zhang",
+    path: "/report",
     component: Layout,
     children: [
       {
-        path: "index",
-        name: "对账统计",
-        component: () => import("@/views/form/index"),
-        meta: { title: "对账统计", icon: "form" },
+        path: "report",
+        name: "report",
+        component: () => import("@/views/report/index"),
+        meta: { title: "对账管理", icon: "el-icon-data-analysis" },
       },
     ],
   },
@@ -210,19 +212,19 @@ export const constantRoutes = [
   { path: "*", redirect: "/404", hidden: true },
 ];
 
-const createRouter = () => new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
-})
+const createRouter = () =>
+  new Router({
+    // mode: 'history', // require service support
+    scrollBehavior: () => ({ y: 0 }),
+    routes: constantRoutes,
+  });
 
-const router = createRouter()
+const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-  const newRouter = createRouter()
-  router.matcher = newRouter.matcher // reset router
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
 }
 
-export default router
-
+export default router;

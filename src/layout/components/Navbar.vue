@@ -15,11 +15,15 @@
       <!-- 用户信息区域 -->
       <div class="user-info">
         <!-- 头像区域 -->
-        <img src="../../assets/404_images/tou.png" alt="" />
+        <img
+          src="../../assets/404_images/tou.png"
+          alt=""
+          v-imgError="defaultimg"
+        />
         <!-- 信息 -->
-        <p>欢迎您~~ admin</p>
+        <p>欢迎您~~ {{ $store.state.user.userInfo.loginName }}</p>
         <!-- 退出 -->
-        <div class="logout">
+        <div class="logout" @click="logout">
           <p>退出</p>
           <i class="el-icon-caret-bottom"></i>
         </div>
@@ -33,13 +37,27 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      defaultimg:
+        "https://img2.baidu.com/it/u=4141477055,960534181&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
+    };
   },
   components: {
     // Hamburger,
   },
+  created() {
+    this.$store.dispatch("user/getUserInfo");
+    // this.$store.commit("user/setUserInfo");
+  },
   computed: {},
-  methods: {},
+  methods: {
+    //退出登录
+    async logout() {
+      // console.log(111);
+      await this.$store.dispatch("user/logout");
+      this.$router.push("/login");
+    },
+  },
 };
 </script>
 
@@ -49,7 +67,7 @@ export default {
   top: 0;
   right: 0;
   z-index: 1999;
-  bottom: 50px;
+  // bottom: 50px;
   width: 100%;
   height: 60px;
   overflow: hidden;
@@ -115,7 +133,6 @@ export default {
           height: 40px;
           border-radius: 10px;
         }
-
       }
     }
   }
@@ -147,11 +164,11 @@ export default {
     position: relative;
   }
 }
-::v-deep  .el-icon-caret-bottom {
-          position: absolute;
-          top: 15px;
-          right: -15px;
-          cursor: pointer;
-          font-size: 12px;
-        }
+::v-deep .el-icon-caret-bottom {
+  position: absolute;
+  top: 17px;
+  right: -15px;
+  cursor: pointer;
+  font-size: 12px;
+}
 </style>

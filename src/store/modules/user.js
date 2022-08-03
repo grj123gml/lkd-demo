@@ -1,4 +1,4 @@
-import { login } from "@/api/user";
+import { login, getUserInfo } from "@/api/user";
 import router from "@/router";
 import { Message } from "element-ui";
 export default {
@@ -6,6 +6,7 @@ export default {
   state: {
     token: "",
     clientToken: "",
+    userInfo: {},
   },
   mutations: {
     setClientToken(state, payload) {
@@ -13,6 +14,9 @@ export default {
     },
     setToken(state, payload) {
       state.token = payload;
+    },
+    setUserInfo(state, payload) {
+      state.userInfo = payload;
     },
   },
   actions: {
@@ -39,6 +43,16 @@ export default {
         });
         router.push("/home");
       }
+    },
+    async getUserInfo(context) {
+      const userInfo = await getUserInfo(context.state.token.userId);
+      console.log(userInfo);
+      context.commit("setUserInfo", userInfo.data);
+    },
+    // 退出
+    logout(context) {
+      context.commit("setToken", "");
+      context.commit("setUserInfo", "");
     },
   },
 };
