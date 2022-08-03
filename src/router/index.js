@@ -56,7 +56,7 @@ export const constantRoutes = [
   },
 
   {
-    path: "/nested",
+    path: "/goods",
     component: Layout,
     redirect: "/nested/menu1",
     name: "点位管理",
@@ -86,7 +86,7 @@ export const constantRoutes = [
     ],
   },
   {
-    path: "/nested",
+    path: "/shebei",
     component: Layout,
     redirect: "/nested/menu1",
     name: "设备管理",
@@ -116,7 +116,7 @@ export const constantRoutes = [
     ],
   },
   {
-    path: "/nested",
+    path: "/people",
     component: Layout,
     redirect: "/nested/menu1",
     name: "人员管理",
@@ -146,7 +146,7 @@ export const constantRoutes = [
     ],
   },
   {
-    path: "/nested",
+    path: "/good",
     component: Layout,
     redirect: "/nested/menu1",
     name: "商品管理",
@@ -182,7 +182,7 @@ export const constantRoutes = [
     ],
   },
   {
-    path: "/form",
+    path: "/order",
     component: Layout,
     children: [
       {
@@ -194,7 +194,7 @@ export const constantRoutes = [
     ],
   },
   {
-    path: "/form",
+    path: "/zhang",
     component: Layout,
     children: [
       {

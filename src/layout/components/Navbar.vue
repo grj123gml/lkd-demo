@@ -116,13 +116,6 @@ export default {
           border-radius: 10px;
         }
 
-        .el-icon-caret-bottom {
-          position: absolute;
-          top: 15px;
-          right: -15px;
-          cursor: pointer;
-          font-size: 12px;
-        }
       }
     }
   }
@@ -154,4 +147,11 @@ export default {
     position: relative;
   }
 }
+::v-deep  .el-icon-caret-bottom {
+          position: absolute;
+          top: 15px;
+          right: -15px;
+          cursor: pointer;
+          font-size: 12px;
+        }
 </style>
