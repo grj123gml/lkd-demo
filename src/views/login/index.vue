@@ -59,16 +59,16 @@
             auto-complete="on"
           />
           <div class="el-col">
-            <img :src="imageUrl" />
+            <img :src="imageUrl" @click="changeimg" />
           </div>
         </el-form-item>
 
         <el-button
           type="primary"
           style="width: 100%; margin-bottom: 30px"
+          :loading="isLogin"
           @click.native.prevent="handleLogin"
-          >登录</el-button
-        >
+          >登录</el-button>
       </el-form>
     </div>
   </div>
@@ -95,6 +95,7 @@ export default {
       },
       passwordType: "password",
       redirect: undefined,
+      isLogin: false,
     };
   },
   watch: {
@@ -110,6 +111,9 @@ export default {
   },
   methods: {
     //显示密码
+    changeimg() {
+      this.getVerificationCode();
+    },
     showPwd() {
       if (this.passwordType === "password") {
         this.passwordType = "";
@@ -124,25 +128,18 @@ export default {
     async getVerificationCode() {
       const clientToken = Math.floor(Math.random() * 10000);
       const res = await getVerificationCode(clientToken);
+      console.log(res);
       this.imageUrl = URL.createObjectURL(res.data);
       this.$store.commit("user/setClientToken", clientToken);
     },
     //登录点击事件
-    handleLogin() {
+    async handleLogin() {
+      this.isLogin = true;
       try {
-        this.$store.dispatch("user/getToken", this.loginForm);
-        // if (!this.$store.state.user.token.success) {
-        //   this.$message.error("登录失败");
-        //   this.getVerificationCode()
-        // } else {
-        //   this.$message({
-        //     message: "恭喜你，登录成功",
-        //     type: "success",
-        //   });
-        //   this.$router.push("/home");
-        // }
-      } catch (error) {
-        console.log(error);
+        await this.$refs.loginForm.validate();
+        await this.$store.dispatch("user/getToken", this.loginForm);
+      } finally {
+        this.isLogin = false;
       }
     },
   },

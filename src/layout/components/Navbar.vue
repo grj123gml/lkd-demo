@@ -1,82 +1,73 @@
 <template>
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+    <!-- <hamburger
+      :is-active="sidebar"
+      class="hamburger-container"
+      @toggleClick="toggleSideBar"
+    /> -->
 
-    <breadcrumb class="breadcrumb-container" />
-
-    <div class="right-menu">
-      <el-dropdown class="avatar-container" trigger="click">
-        <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
-          <i class="el-icon-caret-bottom" />
+    <div class="box">
+      <img
+        src="../../assets/404_images/logo.3673fab5.png"
+        alt=""
+        class="logo"
+      />
+      <!-- 用户信息区域 -->
+      <div class="user-info">
+        <!-- 头像区域 -->
+        <img src="../../assets/404_images/tou.png" alt="" />
+        <!-- 信息 -->
+        <p>欢迎您~~ admin</p>
+        <!-- 退出 -->
+        <div class="logout">
+          <p>退出</p>
+          <i class="el-icon-caret-bottom"></i>
         </div>
-        <el-dropdown-menu slot="dropdown" class="user-dropdown">
-          <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
-          </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
-            <el-dropdown-item>Github</el-dropdown-item>
-          </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display:block;">Log Out</span>
-          </el-dropdown-item>
-        </el-dropdown-menu>
-      </el-dropdown>
+      </div>
     </div>
+
+    <div class="right-menu"></div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import Breadcrumb from '@/components/Breadcrumb'
-import Hamburger from '@/components/Hamburger'
-
 export default {
+  data() {
+    return {};
+  },
   components: {
-    Breadcrumb,
-    Hamburger
+    // Hamburger,
   },
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
-    },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    }
-  }
-}
+  computed: {},
+  methods: {},
+};
 </script>
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1999;
+  bottom: 50px;
+  width: 100%;
+  height: 60px;
   overflow: hidden;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  // position: relative;
+  background: url("../../assets/404_images/navabar.png") no-repeat;
+  background-size: cover;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
 
   .hamburger-container {
     line-height: 46px;
     height: 100%;
     float: left;
     cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color:transparent;
+    transition: background 0.3s;
+    -webkit-tap-highlight-color: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, .025)
+      background: rgba(0, 0, 0, 0.025);
     }
   }
 
@@ -103,10 +94,10 @@ export default {
 
       &.hover-effect {
         cursor: pointer;
-        transition: background .3s;
+        transition: background 0.3s;
 
         &:hover {
-          background: rgba(0, 0, 0, .025)
+          background: rgba(0, 0, 0, 0.025);
         }
       }
     }
@@ -126,14 +117,41 @@ export default {
         }
 
         .el-icon-caret-bottom {
-          cursor: pointer;
           position: absolute;
-          right: -20px;
-          top: 25px;
+          top: 15px;
+          right: -15px;
+          cursor: pointer;
           font-size: 12px;
         }
       }
     }
+  }
+}
+.box {
+  width: 100%;
+  height: 100%;
+  width: 100%;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+}
+.logo {
+  width: 90px;
+}
+.user-info {
+  width: 300px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 16px;
+  .logout {
+    display: flex;
+    cursor: pointer;
+    position: relative;
   }
 }
 </style>
