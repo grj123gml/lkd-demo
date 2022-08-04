@@ -16,7 +16,8 @@
       <div class="user-info">
         <!-- 头像区域 -->
         <img
-          src="../../assets/404_images/tou.png"
+          class="user-pic"
+          :src="$store.state.user.userInfo.image + '123'"
           alt=""
           v-imgError="defaultimg"
         />
@@ -39,7 +40,7 @@ export default {
   data() {
     return {
       defaultimg:
-        "https://img2.baidu.com/it/u=4141477055,960534181&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=500",
+        "https://img2.baidu.com/it/u=3863075267,3763001085&fm=253&fmt=auto&app=138&f=JPEG?w=599&h=398",
     };
   },
   components: {
@@ -170,5 +171,10 @@ export default {
   right: -15px;
   cursor: pointer;
   font-size: 12px;
+}
+.user-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 </style>
