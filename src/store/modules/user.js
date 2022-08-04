@@ -1,6 +1,7 @@
 import { login, getUserInfo } from "@/api/user";
 import router from "@/router";
 import { Message } from "element-ui";
+import { setTokenTime } from '@/utils/auth'
 export default {
   namespaced: true,
   state: {
@@ -43,6 +44,7 @@ export default {
         });
         router.push("/home");
       }
+      setTokenTime();
     },
     async getUserInfo(context) {
       const userInfo = await getUserInfo(context.state.token.userId);
