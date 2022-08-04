@@ -16,8 +16,8 @@ function isTimeout() {
   //存token时的时间戳
   const tokenTime = getTokenTime();
   //规定过期时间（两小时）
-  // const timeout = 2 * 60 * 60 * 1000;
-  const timeout = 3 * 1000;
+  const timeout = 2 * 60 * 60 * 1000;
+  // const timeout = 3 * 1000;
   return currentTime - tokenTime > timeout;
 }
 
